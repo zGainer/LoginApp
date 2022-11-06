@@ -118,8 +118,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome" translatesAutoresizingMaskIntoConstraints="NO" id="zDC-z3-Id2">
                                 <rect key="frame" x="16" y="67" width="396" height="214"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-yJ-zCT">
-                                <rect key="frame" x="110.66666666666669" y="291" width="207" height="63.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-yJ-zCT">
+                                <rect key="frame" x="16" y="291" width="396" height="63.666666666666686"/>
                                 <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="50"/>
                                 <color key="textColor" red="0.66274509800000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -134,7 +134,8 @@
                             <constraint firstItem="zDC-z3-Id2" firstAttribute="height" secondItem="e2s-07-Opz" secondAttribute="width" multiplier="1:2" id="IdO-kE-AtY"/>
                             <constraint firstItem="zDC-z3-Id2" firstAttribute="top" secondItem="e5y-zf-RLC" secondAttribute="top" constant="20" id="SCF-Nn-9a9"/>
                             <constraint firstItem="0Za-YQ-646" firstAttribute="centerX" secondItem="e2s-07-Opz" secondAttribute="centerX" id="U5K-8n-hCA"/>
-                            <constraint firstItem="IqY-yJ-zCT" firstAttribute="centerX" secondItem="e2s-07-Opz" secondAttribute="centerX" id="WHL-Xx-e4I"/>
+                            <constraint firstItem="IqY-yJ-zCT" firstAttribute="leading" secondItem="e5y-zf-RLC" secondAttribute="leading" constant="16" id="ddL-V2-smT"/>
+                            <constraint firstItem="e5y-zf-RLC" firstAttribute="trailing" secondItem="IqY-yJ-zCT" secondAttribute="trailing" constant="16" id="gEw-lU-grJ"/>
                             <constraint firstItem="e5y-zf-RLC" firstAttribute="trailing" secondItem="zDC-z3-Id2" secondAttribute="trailing" constant="16" id="oVQ-j7-ByB"/>
                         </constraints>
                     </view>
