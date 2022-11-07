@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
 
-        welcomeVC.username = usernameTF.text
+        welcomeVC.username = username
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
@@ -30,34 +30,28 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func forgotUserNameButtonTapped() {
-        let alertMessage = UIAlertController(title: "Reminder",
-                                             message: "Your username is \(username)",
-                                             preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: "OK", style: .default)
+        let alertMessage = getAlertController(title: "Reminder",
+                                              message: "Your username is \(username)")
+
         let fill = UIAlertAction(title: "Fill",
                                  style: .destructive) { _ in
             self.usernameTF.text = self.username
         }
         
-        alertMessage.addAction(ok)
         alertMessage.addAction(fill)
         
         self.present(alertMessage, animated: true)
     }
     
     @IBAction func forgotPasswordButtonTapped() {
-        let alertMessage = UIAlertController(title: "Reminder",
-                                             message: "Your password is \(password)",
-                                             preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: "OK", style: .default)
+        let alertMessage = getAlertController(title: "Reminder",
+                                              message: "Your password is \(password)")
+
         let fill = UIAlertAction(title: "Fill",
                                  style: .destructive) { _ in
             self.passwordTF.text = self.password
         }
         
-        alertMessage.addAction(ok)
         alertMessage.addAction(fill)
         
         self.present(alertMessage, animated: true)
@@ -65,15 +59,24 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped() {
         if usernameTF.text != username || passwordTF.text != password {
-            let alertMessage = UIAlertController(title: "Error",
-                                                 message: "Wrong username or password!",
-                                                 preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: "OK", style: .default)
-            
-            alertMessage.addAction(ok)
+            let alertMessage = getAlertController(title: "Error",
+                                                  message: "Wrong username or password!")
             
             self.present(alertMessage, animated: true)
+            
+            passwordTF.text = ""
         }
+    }
+    
+    private func getAlertController(title: String, message: String) -> UIAlertController {
+        let alertMessage = UIAlertController(title: title,
+                                             message: message,
+                                             preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "OK", style: .default)
+        
+        alertMessage.addAction(ok)
+
+        return alertMessage
     }
 }
