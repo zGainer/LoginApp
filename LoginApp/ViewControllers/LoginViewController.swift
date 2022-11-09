@@ -11,8 +11,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
-    private let username = "User"
-    private let password = "12345"
+    private let user = User.getUserInfo()
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -21,9 +20,21 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-
-        welcomeVC.username = username
+        guard let tabBarVC = segue.destination as? UITabBarController else { return }
+        
+        guard let viewControllers = tabBarVC.viewControllers else { return }
+        
+        for viewController in viewControllers {
+            if let welcomeVC = viewController as? WelcomeViewController {
+                welcomeVC.username = user.username
+            } else if let infoVC = viewController as? InfoViewController {
+                infoVC.person = user.person
+            } else if let descriptionVC = viewController as? DescriptionViewController {
+                guard let person = user.person else { return }
+                
+                descriptionVC.descriptionText = person.description
+            }
+        }
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
@@ -33,12 +44,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotButtonTapped(_ sender: UIButton) {
         sender.tag == 0
-            ? showAlert(title: "Reminder", message: "Your username is \(username)")
-            : showAlert(title: "Reminder", message: "Your password is \(password)")
+            ? showAlert(title: "Reminder", message: "Your username is \(user.username)")
+            : showAlert(title: "Reminder", message: "Your password is \(user.password)")
     }
     
     @IBAction func loginButtonTapped() {
-        guard usernameTF.text == username, passwordTF.text == password else {
+        guard usernameTF.text == user.username, passwordTF.text == user.password else {
             showAlert(title: "Error",
                       message: "Wrong username or password!",
                       textField: passwordTF)
@@ -46,28 +57,23 @@ class LoginViewController: UIViewController {
             return
         }
         
-//        performSegue(withIdentifier: "openWelcomeVC", sender: nil)
+        performSegue(withIdentifier: "openWelcomeVC", sender: nil)
     }
 }
 
 extension LoginViewController {
     private func showAlert(title: String, message: String, textField: UITextField? = nil) {
+        
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-
+        
         let ok = UIAlertAction(title: "OK", style: .default) { _ in
             textField?.text = ""
         }
-
+        
         alert.addAction(ok)
         
         present(alert, animated: true)
     }
-    //        let fill = UIAlertAction(title: "Fill",
-    //                                 style: .destructive) { _ in
-    //            self.passwordTF.text = self.password
-    //        }
-    //
-    //        alertMessage.addAction(fill)
 }
