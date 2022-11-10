@@ -10,11 +10,11 @@ import UIKit
 class DescriptionViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     
-    var descriptionText = ""
+    var person: Person!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionLabel.text = descriptionText
+        descriptionLabel.text = person.description
     }
 }

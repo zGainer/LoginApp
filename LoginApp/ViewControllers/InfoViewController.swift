@@ -13,7 +13,7 @@ class InfoViewController: UIViewController {
     @IBOutlet var ageLabel: UILabel!
     @IBOutlet var workLabel: UILabel!
     
-    var person: Person?
+    var person: Person!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,7 @@ class InfoViewController: UIViewController {
         fillData()
     }
     
-    private func fillData() {
-        guard let person = person else { return }
-        
+    private func fillData() {        
         nameLabel.text = "Name: \(person.name)"
         surnameLabel.text = "Surname: \(person.surname)"
         ageLabel.text = "Age: \(person.age)"

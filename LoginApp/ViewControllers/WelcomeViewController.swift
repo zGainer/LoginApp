@@ -10,11 +10,11 @@ import UIKit
 class WelcomeViewController: UIViewController {
     @IBOutlet var greetingLabel: UILabel!
     
-    var username: String!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        greetingLabel.text = username ?? "..."
+        greetingLabel.text = user.username
     }
 }

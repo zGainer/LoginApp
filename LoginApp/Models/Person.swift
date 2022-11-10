@@ -8,7 +8,7 @@
 struct User {
     let username: String
     let password: String
-    var person: Person?
+    var person: Person
 }
 
 struct Person {

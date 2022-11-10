@@ -26,13 +26,11 @@ class LoginViewController: UIViewController {
         
         for viewController in viewControllers {
             if let welcomeVC = viewController as? WelcomeViewController {
-                welcomeVC.username = user.username
+                welcomeVC.user = user
             } else if let infoVC = viewController as? InfoViewController {
                 infoVC.person = user.person
             } else if let descriptionVC = viewController as? DescriptionViewController {
-                guard let person = user.person else { return }
-                
-                descriptionVC.descriptionText = person.description
+                descriptionVC.person = user.person
             }
         }
     }
